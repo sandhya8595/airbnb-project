@@ -1,0 +1,100 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand: #FF385C;
+  --color-brand-dark: #E31C5F;
+  --color-brand-light: #FF5A7D;
+  --color-bg-primary: #F7F7F7;
+  --color-bg-card: #FFFFFF;
+  --color-text-primary: #222222;
+  --color-text-secondary: #717171;
+  --color-text-muted: #B0B0B0;
+  --color-border: #EBEBEB;
+  --color-border-hover: #DDDDDD;
+  
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+  --shadow-md: 0 6px 20px rgba(0,0,0,0.12);
+  --shadow-lg: 0 16px 40px rgba(0,0,0,0.15);
+  --shadow-card: 0 2px 16px rgba(0,0,0,0.08);
+  --shadow-card-hover: 0 8px 30px rgba(0,0,0,0.15);
+  
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+}
+
+/* Dark mode overrides */
+html[data-theme="dark"], html.dark {
+  --color-bg-primary: #121212;
+  --color-bg-card: #1E1E1E;
+  --color-text-primary: #F7F7F7;
+  --color-text-secondary: #A0A0A0;
+  --color-text-muted: #717171;
+  --color-border: #333333;
+  --color-border-hover: #444444;
+  --shadow-card: 0 2px 16px rgba(0,0,0,0.3);
+  --shadow-card-hover: 0 8px 30px rgba(0,0,0,0.5);
+}
+
+@layer base {
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-primary);
+    transition: background-color 0.3s ease, color 0.3s ease;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+  }
+}
+
+@layer utilities {
+  .glass-nav {
+    background: color-mix(in srgb, var(--color-bg-card) 90%, transparent);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+  
+  .text-gradient {
+    background: linear-gradient(135deg, #FF385C 0%, #E61E4D 50%, #D70466 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .bg-gradient-brand {
+    background: linear-gradient(135deg, #FF385C 0%, #E61E4D 50%, #D70466 100%);
+  }
+
+  .shadow-brand {
+    box-shadow: 0 4px 15px rgba(255, 56, 92, 0.35);
+  }
+  
+  .shadow-brand-hover {
+    box-shadow: 0 6px 20px rgba(255, 56, 92, 0.45);
+  }
+}
+
+/* Leaflet Map overrides for dark mode */
+html[data-theme="dark"] .leaflet-layer,
+html[data-theme="dark"] .leaflet-control-zoom-in,
+html[data-theme="dark"] .leaflet-control-zoom-out,
+html[data-theme="dark"] .leaflet-control-attribution {
+  filter: invert(100%) hue-rotate(180deg) brightness(95%) contrast(90%);
+}
+
+/* Animations */
+@keyframes skeleton-loading {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.skeleton-box {
+  background-image: linear-gradient(90deg, 
+    color-mix(in srgb, var(--color-bg-primary) 100%, transparent) 25%, 
+    color-mix(in srgb, var(--color-border) 100%, transparent) 50%, 
+    color-mix(in srgb, var(--color-bg-primary) 100%, transparent) 75%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s infinite;
+}
