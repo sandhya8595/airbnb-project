@@ -47,7 +47,7 @@ const ReservedPage = () => {
       ) : (
         <div className="flex flex-col gap-6">
           {reservations.map(res => (
-            <div key={res.id} className="flex flex-col md:flex-row bg-[var(--color-bg-card)] rounded-2xl overflow-hidden border border-[var(--color-border)] shadow-sm hover:shadow-md transition-shadow">
+            <div key={res._id} className="flex flex-col md:flex-row bg-[var(--color-bg-card)] rounded-2xl overflow-hidden border border-[var(--color-border)] shadow-sm hover:shadow-md transition-shadow">
               <div className="w-full md:w-64 h-48 md:h-auto bg-gray-200 shrink-0 relative">
                 {res.home ? (
                   <img src={res.home.photoUrl} alt="Home" className="w-full h-full object-cover" />
