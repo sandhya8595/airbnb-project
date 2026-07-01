@@ -10,23 +10,23 @@ const HomeCard = ({ home }) => {
     // Check if favorited (if backend supports check without auth)
     const checkFav = async () => {
       try {
-        const res = await api.get(`/favourites/check/${home.id}`);
+        const res = await api.get(`/favourites/check/${home._id}`);
         setIsFav(res.data.isFavorite);
       } catch (err) {
         // ignore
       }
     };
     checkFav();
-  }, [home.id]);
+  }, [home._id]);
 
   const toggleFav = async (e) => {
     e.preventDefault(); // prevent link navigation
     try {
       if (isFav) {
-        await api.delete(`/favourites/${home.id}`);
+        await api.delete(`/favourites/${home._id}`);
         setIsFav(false);
       } else {
-        await api.post('/favourites', { homeId: home.id });
+        await api.post('/favourites', { homeId: home._id });
         setIsFav(true);
       }
     } catch (err) {
@@ -36,7 +36,7 @@ const HomeCard = ({ home }) => {
 
   return (
     <div className="group relative bg-[var(--color-bg-card)] rounded-2xl overflow-hidden shadow-card hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300 border border-[var(--color-border)] cursor-pointer flex flex-col h-full">
-      <Link to={`/store/homes/${home.id}`} className="flex flex-col grow">
+      <Link to={`/store/homes/${home._id}`} className="flex flex-col grow">
         {/* Image */}
         <div className="relative w-full pt-[66%] overflow-hidden">
           <img 
