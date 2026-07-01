@@ -48,7 +48,7 @@ const FavouritesPage = () => {
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {homes.map(home => (
-            <HomeCard key={home.id} home={home} />
+            <HomeCard key={home._id} home={home} />
           ))}
         </div>
       )}
