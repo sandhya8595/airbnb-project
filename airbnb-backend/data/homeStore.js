@@ -260,7 +260,6 @@ async function getNearbyHomes(lat, lng, radiusKm = 50) {
     })
     .sort((a, b) => a.distance - b.distance);
 }
-
 module.exports = {
   seedHomes,
   getAllHomes,
@@ -274,7 +273,7 @@ module.exports = {
   addFavourite,
   deleteFavourite,
   isFavorite,
-  getAllReservations,
+  getUserReservations,   // was getAllReservations
   addReservation,
   getNearbyHomes,
 };
