@@ -200,8 +200,13 @@ async function getAllReservations() {
   return Reservation.find().lean({ virtuals: true });
 }
 
+async function getUserReservations(userId) {
+  return Reservation.find({ user: userId }).lean({ virtuals: true });
+}
+
 async function addReservation(reservationData) {
   const reservation = await Reservation.create({
+    user: reservationData.user,
     homeId: reservationData.homeId,
     guestName: reservationData.guestName || 'Guest',
     guestEmail: reservationData.guestEmail || '',
