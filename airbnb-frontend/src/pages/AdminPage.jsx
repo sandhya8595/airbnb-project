@@ -26,7 +26,7 @@ const AdminPage = () => {
     if (window.confirm('Are you sure you want to delete this listing?')) {
       try {
         await api.delete(`/homes/${id}`);
-        setHomes(homes.filter(h => h.id !== id));
+        setHomes(homes.filter(h => h._id !== id));
       } catch (err) {
         console.error(err);
       }
@@ -36,8 +36,8 @@ const AdminPage = () => {
   const toggleStatus = async (home) => {
     try {
       const newStatus = home.status === 'approved' ? 'pending' : 'approved';
-      const res = await api.put(`/homes/${home.id}`, { ...home, status: newStatus });
-      setHomes(homes.map(h => h.id === home.id ? res.data : h));
+      const res = await api.put(`/homes/${home._id}`, { ...home, status: newStatus });
+      setHomes(homes.map(h => h._id === home._id ? res.data : h));
     } catch (err) {
       console.error(err);
     }
@@ -77,7 +77,7 @@ const AdminPage = () => {
                 <tr><td colSpan="5" className="p-8 text-center text-[var(--color-text-secondary)]">No properties found.</td></tr>
               ) : (
                 homes.map(home => (
-                  <tr key={home.id} className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors group">
+                  <tr key={home._id} className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors group">
                     <td className="p-4">
                       <div className="flex items-center gap-4">
                         <img src={home.photoUrl} alt="Thumbnail" className="w-16 h-12 rounded-lg object-cover bg-gray-200" />
@@ -111,7 +111,7 @@ const AdminPage = () => {
                         <button className="p-2 text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg transition-colors" title="Edit (Coming Soon)">
                           <Edit size={18} />
                         </button>
-                        <button onClick={() => handleDelete(home.id)} className="p-2 text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors" title="Delete">
+                        <button onClick={() => handleDelete(home._id)} className="p-2 text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors" title="Delete">
                           <Trash2 size={18} />
                         </button>
                       </div>
