@@ -96,7 +96,7 @@ const BookingPage = () => {
               <select name="homeId" required value={formData.homeId} onChange={handleChange} className="w-full px-4 py-3 rounded-xl border border-[var(--color-border)] bg-[var(--color-bg-primary)] focus:outline-none focus:border-[var(--color-brand)]">
                 <option value="">Choose a listing...</option>
                 {homes.map(h => (
-                  <option key={h.id} value={h.id}>{h.houseName} — ₹{h.pricePerNight}/night</option>
+                  <option key={h._id} value={h._id}>{h.houseName} — ₹{h.pricePerNight}/night</option>
                 ))}
               </select>
             </div>
