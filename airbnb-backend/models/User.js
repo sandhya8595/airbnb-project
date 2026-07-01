@@ -1,3 +1,4 @@
+console.log("USER MODEL LOADED — VERSION CHECK 1");
 // ===== User Model =====
 // New model for proper JWT authentication (replaces dummy session auth).
 // Stores email, hashed password, and name in MongoDB.
